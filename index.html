@@ -114,13 +114,76 @@
       </div>
       <div class="modal-body">
         <!-- Easiest: embed hosted Formspree page in an iframe -->
-        <iframe
-          class="modal-iframe"
-          src="https://formspree.io/f/xldpnorn"
-          title="LeadSaver early access form"
-          loading="eager"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <!-- Modal (inline Formspree form) -->
+<div class="modal-backdrop" id="leadModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+  <div class="modal" role="document">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Get early access</div>
+      <button class="modal-close" id="closeModalBtn" aria-label="Close modal">×</button>
+    </div>
+
+    <div class="modal-body" style="padding:16px">
+      <form id="leadForm"
+            action="https://formspree.io/f/xldpnorn"
+            method="POST"
+            novalidate
+            style="display:grid;gap:12px">
+        <!-- Honeypot (spam trap) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
+
+        <div>
+          <label for="name" style="display:block;font-weight:600;">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Contractor"
+                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
+        </div>
+
+        <div>
+          <label for="email" style="display:block;font-weight:600;">Email <span aria-hidden="true" style="color:#ff6a3d">*</span></label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"
+                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
+        </div>
+
+        <div>
+          <label for="phone" style="display:block;font-weight:600;">Phone (optional)</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567"
+                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
+        </div>
+
+        <div>
+          <label for="company" style="display:block;font-weight:600;">Business name</label>
+          <input id="company" name="company" type="text" placeholder="Acme HVAC"
+                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
+        </div>
+
+        <div>
+          <label for="message" style="display:block;font-weight:600;">Anything we should know?</label>
+          <textarea id="message" name="message" rows="4" placeholder="e.g., Hours, preferred callback time"
+                    style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px"></textarea>
+        </div>
+
+        <!-- Optional: subject to show in Formspree emails -->
+        <input type="hidden" name="_subject" value="LeadSaver early access">
+
+        <button class="btn" type="submit" id="submitBtn">Request access</button>
+
+        <!-- Inline status messages -->
+        <p id="formStatus" class="visually-hidden" aria-live="polite"></p>
+      </form>
+
+      <!-- Success state (hidden initially) -->
+      <div id="successState" style="display:none;padding:8px 4px;">
+        <h3 style="margin:8px 0 6px;color:#153a5b">Thanks — you’re on the list! 🎉</h3>
+        <p style="color:#5c7186">We’ll reach out as soon as a spot opens in the founders beta.</p>
+        <button class="btn btn-outline" id="closeAfterSuccess" type="button">Close</button>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      Your info is used only to contact you about early access.
+    </div>
+  </div>
+</div>
+
         <noscript>
           <div style="padding:16px">
             JavaScript is off. <a href="https://formspree.io/f/xldpnorn" target="_blank" rel="noopener">Open the form here</a>.
