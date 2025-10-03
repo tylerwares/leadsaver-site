@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeadSaver — Turn missed calls into booked jobs</title>
+  <meta name="description" content="LeadSaver automatically texts back missed calls so you don't lose customers to competitors." />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root{
+      --navy:#153a5b; --orange:#ff6a3d; --ink:#0f2233; --bg:#f7fafc; --muted:#5c7186;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif}
+    .wrap{max-width:1040px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;gap:14px}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
+    .ring{width:36px;height:36px;border:3px solid var(--navy);border-radius:50%;position:relative;background:conic-gradient(var(--orange) 0 25%, #fff 25% 50%, var(--orange) 50% 75%, #fff 75% 100%)}
+    .phone{position:absolute;inset:0;display:grid;place-items:center;font-weight:bold;color:var(--navy)}
+    h1{font-size:clamp(32px,6vw,56px);line-height:1.1;margin:28px 0 12px;color:var(--navy)}
+    p.lead{font-size:clamp(18px,2.6vw,22px);color:var(--muted);max-width:720px}
+    .cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--navy);color:#fff;border:none;border-radius:12px;padding:14px 18px;font-weight:700;text-decoration:none}
+    .btn-outline{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
+    @media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
+    .card{background:#fff;border:1px solid #e6edf3;border-radius:16px;padding:20px}
+    .kicker{font-weight:700;color:var(--orange);letter-spacing:.02em}
+    footer{margin:42px 0 16px;color:#6b7f93;font-size:14px}
+    .phone-num{font-weight:800;color:var(--navy)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="/">
+        <span class="ring"><span class="phone">☎</span></span>
+        <strong style="font-size:20px;">LeadSaver</strong>
+      </a>
+    </header>
+
+    <main class="grid">
+      <section>
+        <div class="kicker">Stop losing jobs to voicemail</div>
+        <h1>Turn missed calls into booked jobs—automatically.</h1>
+        <p class="lead">LeadSaver texts back every missed call in seconds with a friendly message and booking link, so prospects don’t hang up and call your competitor.</p>
+        <div class="cta">
+          <a class="btn" href="https://forms.gle/" target="_blank" rel="noopener">Get early access</a>
+          <a class="btn btn-outline" href="tel:+17059552460">Call us: <span class="phone-num">(705) 955-2460</span></a>
+        </div>
+        <div class="card" style="margin-top:24px">
+          <strong>How it works</strong>
+          <ol>
+            <li>Connect your business number.</li>
+            <li>Customize your auto-reply text (name, hours, booking link).</li>
+            <li>We text back every missed call—no lead left behind.</li>
+          </ol>
+        </div>
+      </section>
+      <aside>
+        <div class="card">
+          <strong>Why it matters</strong>
+          <ul>
+            <li>Most callers won’t leave voicemail—they call the next company.</li>
+            <li>Instant text reply wins trust & salvages the lead.</li>
+            <li>Simple setup. No new app to learn.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Pricing</strong>
+          <p>Founders beta—limited spots. Simple monthly rate.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>© <span id="y"></span> LeadSaver. All rights reserved.</footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
