@@ -5,35 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LeadSaver — Turn missed calls into booked jobs</title>
   <meta name="description" content="LeadSaver automatically texts back missed calls so you don't lose customers to competitors." />
+
+  <!-- Icons -->
   <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/leadsaver_icon_512.png" />
+  <meta property="og:image" content="https://leadsaver.ca/leadsaver_icon_512.png" />
+
   <style>
     :root{
       --navy:#153a5b; --orange:#ff6a3d; --ink:#0f2233; --bg:#f7fafc; --muted:#5c7186;
+      --shadow:0 8px 28px rgba(21,58,91,.18);
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif}
     .wrap{max-width:1040px;margin:0 auto;padding:28px}
     header{display:flex;align-items:center;gap:14px}
     .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
+    /* Placeholder CSS logo (you can swap <img src="/leadsaver_icon.svg"> if you prefer) */
     .ring{width:36px;height:36px;border:3px solid var(--navy);border-radius:50%;position:relative;background:conic-gradient(var(--orange) 0 25%, #fff 25% 50%, var(--orange) 50% 75%, #fff 75% 100%)}
     .phone{position:absolute;inset:0;display:grid;place-items:center;font-weight:bold;color:var(--navy)}
     h1{font-size:clamp(32px,6vw,56px);line-height:1.1;margin:28px 0 12px;color:var(--navy)}
     p.lead{font-size:clamp(18px,2.6vw,22px);color:var(--muted);max-width:720px}
     .cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{background:var(--navy);color:#fff;border:none;border-radius:12px;padding:14px 18px;font-weight:700;text-decoration:none}
+    .btn{background:var(--navy);color:#fff;border:none;border-radius:12px;padding:14px 18px;font-weight:700;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+    .btn:focus{outline:3px solid #a7c5e3;outline-offset:2px}
     .btn-outline{background:#fff;color:var(--navy);border:2px solid var(--navy)}
     .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
     @media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
-    .card{background:#fff;border:1px solid #e6edf3;border-radius:16px;padding:20px}
+    .card{background:#fff;border:1px solid #e6edf3;border-radius:16px;padding:20px;box-shadow:var(--shadow)}
     .kicker{font-weight:700;color:var(--orange);letter-spacing:.02em}
     footer{margin:42px 0 16px;color:#6b7f93;font-size:14px}
     .phone-num{font-weight:800;color:var(--navy)}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}
+    .modal-backdrop[aria-hidden="false"]{display:flex}
+    .modal{background:#fff;border-radius:16px;max-width:720px;width:100%;box-shadow:var(--shadow);overflow:hidden}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e6edf3;background:#f9fbfd}
+    .modal-title{font-weight:800;color:var(--navy)}
+    .modal-close{background:transparent;border:none;font-size:22px;line-height:1;cursor:pointer;color:#2a3f53}
+    .modal-body{height:min(80vh,720px);padding:0}
+    .modal-iframe{width:100%;height:100%;border:0}
+    .modal-footer{padding:12px 16px;border-top:1px solid #e6edf3;background:#f9fbfd;font-size:14px;color:#6b7f93}
+    body.modal-open{overflow:hidden}
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <a class="logo" href="/">
-        <span class="ring"><span class="phone">☎</span></span>
+      <a class="logo" href="/" aria-label="LeadSaver home">
+        <span class="ring" aria-hidden="true"><span class="phone">☎</span></span>
         <strong style="font-size:20px;">LeadSaver</strong>
       </a>
     </header>
@@ -43,10 +64,18 @@
         <div class="kicker">Stop losing jobs to voicemail</div>
         <h1>Turn missed calls into booked jobs—automatically.</h1>
         <p class="lead">LeadSaver texts back every missed call in seconds with a friendly message and booking link, so prospects don’t hang up and call your competitor.</p>
+
         <div class="cta">
-          <a class="btn" href="https://forms.gle/" target="_blank" rel="noopener">Get early access</a>
-          <a class="btn btn-outline" href="tel:+17059552460">Call us: <span class="phone-num">(705) 955-2460</span></a>
+          <!-- Button opens modal with embedded Formspree -->
+          <button class="btn" id="openModalBtn" type="button" aria-haspopup="dialog" aria-controls="leadModal">
+            Get early access
+          </button>
+
+          <a class="btn btn-outline" href="tel:+17059552460" aria-label="Call LeadSaver at (705) 955-2460">
+            Call us: <span class="phone-num">(705) 955-2460</span>
+          </a>
         </div>
+
         <div class="card" style="margin-top:24px">
           <strong>How it works</strong>
           <ol>
@@ -56,6 +85,7 @@
           </ol>
         </div>
       </section>
+
       <aside>
         <div class="card">
           <strong>Why it matters</strong>
@@ -74,6 +104,58 @@
 
     <footer>© <span id="y"></span> LeadSaver. All rights reserved.</footer>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <!-- Modal (embedded Formspree) -->
+  <div class="modal-backdrop" id="leadModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+    <div class="modal" role="document">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Get early access</div>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close modal">×</button>
+      </div>
+      <div class="modal-body">
+        <!-- Easiest: embed hosted Formspree page in an iframe -->
+        <iframe
+          class="modal-iframe"
+          src="https://formspree.io/f/xldpnorn"
+          title="LeadSaver early access form"
+          loading="eager"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <noscript>
+          <div style="padding:16px">
+            JavaScript is off. <a href="https://formspree.io/f/xldpnorn" target="_blank" rel="noopener">Open the form here</a>.
+          </div>
+        </noscript>
+      </div>
+      <div class="modal-footer">
+        Your info is used only to contact you about early access.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const modal = document.getElementById('leadModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    function openModal(){
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      // focus close for accessibility
+      closeBtn.focus();
+    }
+    function closeModal(){
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal(); });
+  </script>
 </body>
 </html>
