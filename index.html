@@ -15,39 +15,52 @@
     :root{
       --navy:#153a5b; --orange:#ff6a3d; --ink:#0f2233; --bg:#f7fafc; --muted:#5c7186;
       --shadow:0 8px 28px rgba(21,58,91,.18);
+      --border:#e6edf3;
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif}
     .wrap{max-width:1040px;margin:0 auto;padding:28px}
     header{display:flex;align-items:center;gap:14px}
     .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
-    /* Placeholder CSS logo (you can swap <img src="/leadsaver_icon.svg"> if you prefer) */
+    /* Placeholder CSS logo (swap for <img src="/leadsaver_icon.svg"> anytime) */
     .ring{width:36px;height:36px;border:3px solid var(--navy);border-radius:50%;position:relative;background:conic-gradient(var(--orange) 0 25%, #fff 25% 50%, var(--orange) 50% 75%, #fff 75% 100%)}
     .phone{position:absolute;inset:0;display:grid;place-items:center;font-weight:bold;color:var(--navy)}
+
     h1{font-size:clamp(32px,6vw,56px);line-height:1.1;margin:28px 0 12px;color:var(--navy)}
     p.lead{font-size:clamp(18px,2.6vw,22px);color:var(--muted);max-width:720px}
     .cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
     .btn{background:var(--navy);color:#fff;border:none;border-radius:12px;padding:14px 18px;font-weight:700;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
     .btn:focus{outline:3px solid #a7c5e3;outline-offset:2px}
     .btn-outline{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+
     .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
     @media(min-width:900px){.grid{grid-template-columns:1.2fr .8fr}}
-    .card{background:#fff;border:1px solid #e6edf3;border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+
+    .card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
     .kicker{font-weight:700;color:var(--orange);letter-spacing:.02em}
+
+    /* SIDEBAR stack spacing fix */
+    aside{display:grid;gap:18px} /* ensures consistent space between 'Why it matters' and 'Pricing' */
+
     footer{margin:42px 0 16px;color:#6b7f93;font-size:14px}
     .phone-num{font-weight:800;color:var(--navy)}
+
+    /* Pricing styling */
+    .price{font-size:28px;font-weight:900;color:var(--navy)}
+    .strike{color:#8aa0b6;text-decoration:line-through;font-weight:700;margin-right:8px}
+    .badge{display:inline-block;background:#e8f3ff;color:#153a5b;border:1px solid #cfe2f7;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700}
 
     /* Modal */
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}
     .modal-backdrop[aria-hidden="false"]{display:flex}
     .modal{background:#fff;border-radius:16px;max-width:720px;width:100%;box-shadow:var(--shadow);overflow:hidden}
-    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e6edf3;background:#f9fbfd}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);background:#f9fbfd}
     .modal-title{font-weight:800;color:var(--navy)}
     .modal-close{background:transparent;border:none;font-size:22px;line-height:1;cursor:pointer;color:#2a3f53}
-    .modal-body{height:min(80vh,720px);padding:0}
-    .modal-iframe{width:100%;height:100%;border:0}
-    .modal-footer{padding:12px 16px;border-top:1px solid #e6edf3;background:#f9fbfd;font-size:14px;color:#6b7f93}
+    .modal-body{padding:16px}
+    .modal-footer{padding:12px 16px;border-top:1px solid var(--border);background:#f9fbfd;font-size:14px;color:#6b7f93}
     body.modal-open{overflow:hidden}
     .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
+    input,textarea{font:inherit}
   </style>
 </head>
 <body>
@@ -66,11 +79,9 @@
         <p class="lead">LeadSaver texts back every missed call in seconds with a friendly message and booking link, so prospects don’t hang up and call your competitor.</p>
 
         <div class="cta">
-          <!-- Button opens modal with embedded Formspree -->
           <button class="btn" id="openModalBtn" type="button" aria-haspopup="dialog" aria-controls="leadModal">
             Get early access
           </button>
-
           <a class="btn btn-outline" href="tel:+17059552460" aria-label="Call LeadSaver at (705) 955-2460">
             Call us: <span class="phone-num">(705) 955-2460</span>
           </a>
@@ -95,9 +106,23 @@
             <li>Simple setup. No new app to learn.</li>
           </ul>
         </div>
+
         <div class="card">
-          <strong>Pricing</strong>
-          <p>Founders beta—limited spots. Simple monthly rate.</p>
+          <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap">
+            <strong>Pricing</strong>
+            <span class="badge">Founders beta</span>
+          </div>
+          <p style="margin:10px 0 6px">
+            <span class="strike">$299 setup</span> <strong>Setup fee waived</strong>
+          </p>
+          <p class="price">$247<span style="font-weight:600;font-size:18px">/month</span></p>
+          <ul style="margin-top:10px">
+            <li>Instant missed-call textback</li>
+            <li>Your branding, hours & booking link</li>
+            <li>Email summaries of captured leads</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <button class="btn" style="margin-top:8px" type="button" onclick="openModal()">Join the beta</button>
         </div>
       </aside>
     </main>
@@ -105,91 +130,65 @@
     <footer>© <span id="y"></span> LeadSaver. All rights reserved.</footer>
   </div>
 
-  <!-- Modal (embedded Formspree) -->
+  <!-- Modal (inline Formspree form) -->
   <div class="modal-backdrop" id="leadModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
     <div class="modal" role="document">
       <div class="modal-header">
         <div class="modal-title" id="modalTitle">Get early access</div>
         <button class="modal-close" id="closeModalBtn" aria-label="Close modal">×</button>
       </div>
+
       <div class="modal-body">
-        <!-- Easiest: embed hosted Formspree page in an iframe -->
-        <!-- Modal (inline Formspree form) -->
-<div class="modal-backdrop" id="leadModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
-  <div class="modal" role="document">
-    <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Get early access</div>
-      <button class="modal-close" id="closeModalBtn" aria-label="Close modal">×</button>
-    </div>
+        <form id="leadForm"
+              action="https://formspree.io/f/xldpnorn"
+              method="POST"
+              novalidate
+              style="display:grid;gap:12px">
+          <!-- Honeypot -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
 
-    <div class="modal-body" style="padding:16px">
-      <form id="leadForm"
-            action="https://formspree.io/f/xldpnorn"
-            method="POST"
-            novalidate
-            style="display:grid;gap:12px">
-        <!-- Honeypot (spam trap) -->
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
-
-        <div>
-          <label for="name" style="display:block;font-weight:600;">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Contractor"
-                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
-        </div>
-
-        <div>
-          <label for="email" style="display:block;font-weight:600;">Email <span aria-hidden="true" style="color:#ff6a3d">*</span></label>
-          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"
-                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
-        </div>
-
-        <div>
-          <label for="phone" style="display:block;font-weight:600;">Phone (optional)</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567"
-                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
-        </div>
-
-        <div>
-          <label for="company" style="display:block;font-weight:600;">Business name</label>
-          <input id="company" name="company" type="text" placeholder="Acme HVAC"
-                 style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px">
-        </div>
-
-        <div>
-          <label for="message" style="display:block;font-weight:600;">Anything we should know?</label>
-          <textarea id="message" name="message" rows="4" placeholder="e.g., Hours, preferred callback time"
-                    style="width:100%;padding:12px;border:1px solid #e6edf3;border-radius:10px"></textarea>
-        </div>
-
-        <!-- Optional: subject to show in Formspree emails -->
-        <input type="hidden" name="_subject" value="LeadSaver early access">
-
-        <button class="btn" type="submit" id="submitBtn">Request access</button>
-
-        <!-- Inline status messages -->
-        <p id="formStatus" class="visually-hidden" aria-live="polite"></p>
-      </form>
-
-      <!-- Success state (hidden initially) -->
-      <div id="successState" style="display:none;padding:8px 4px;">
-        <h3 style="margin:8px 0 6px;color:#153a5b">Thanks — you’re on the list! 🎉</h3>
-        <p style="color:#5c7186">We’ll reach out as soon as a spot opens in the founders beta.</p>
-        <button class="btn btn-outline" id="closeAfterSuccess" type="button">Close</button>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      Your info is used only to contact you about early access.
-    </div>
-  </div>
-</div>
-
-        <noscript>
-          <div style="padding:16px">
-            JavaScript is off. <a href="https://formspree.io/f/xldpnorn" target="_blank" rel="noopener">Open the form here</a>.
+          <div>
+            <label for="name" style="display:block;font-weight:600;">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Contractor"
+                   style="width:100%;padding:12px;border:1px solid var(--border);border-radius:10px">
           </div>
-        </noscript>
+
+          <div>
+            <label for="email" style="display:block;font-weight:600;">Email <span aria-hidden="true" style="color:#ff6a3d">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"
+                   style="width:100%;padding:12px;border:1px solid var(--border);border-radius:10px">
+          </div>
+
+          <div>
+            <label for="phone" style="display:block;font-weight:600;">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567"
+                   style="width:100%;padding:12px;border:1px solid var(--border);border-radius:10px">
+          </div>
+
+          <div>
+            <label for="company" style="display:block;font-weight:600;">Business name</label>
+            <input id="company" name="company" type="text" placeholder="Acme HVAC"
+                   style="width:100%;padding:12px;border:1px solid var(--border);border-radius:10px">
+          </div>
+
+          <div>
+            <label for="message" style="display:block;font-weight:600;">Anything we should know?</label>
+            <textarea id="message" name="message" rows="4" placeholder="e.g., Hours, preferred callback time"
+                      style="width:100%;padding:12px;border:1px solid var(--border);border-radius:10px"></textarea>
+          </div>
+
+          <input type="hidden" name="_subject" value="LeadSaver early access">
+          <button class="btn" type="submit" id="submitBtn">Request access</button>
+          <p id="formStatus" class="visually-hidden" aria-live="polite"></p>
+        </form>
+
+        <div id="successState" style="display:none;padding:8px 4px;">
+          <h3 style="margin:8px 0 6px;color:#153a5b">Thanks — you’re on the list! 🎉</h3>
+          <p style="color:#5c7186">We’ll reach out as soon as a spot opens in the founders beta.</p>
+          <button class="btn btn-outline" id="closeAfterSuccess" type="button">Close</button>
+        </div>
       </div>
+
       <div class="modal-footer">
         Your info is used only to contact you about early access.
       </div>
@@ -202,23 +201,80 @@
     const modal = document.getElementById('leadModal');
     const openBtn = document.getElementById('openModalBtn');
     const closeBtn = document.getElementById('closeModalBtn');
+    const form = document.getElementById('leadForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusEl = document.getElementById('formStatus');
+    const successState = document.getElementById('successState');
+    const closeAfterSuccess = document.getElementById('closeAfterSuccess');
 
     function openModal(){
       modal.setAttribute('aria-hidden','false');
       document.body.classList.add('modal-open');
-      // focus close for accessibility
       closeBtn.focus();
     }
     function closeModal(){
       modal.setAttribute('aria-hidden','true');
       document.body.classList.remove('modal-open');
-      openBtn.focus();
+      openBtn?.focus();
+      // reset UI state
+      form?.reset();
+      statusEl.classList.add('visually-hidden');
+      statusEl.textContent = '';
+      successState.style.display = 'none';
+      form.style.display = 'grid';
     }
 
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
+    window.openModal = openModal; // allows “Join the beta” button to call it
+
+    openBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
     modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal(); });
+
+    // AJAX submit to Formspree (still posts normally if JS fails)
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email');
+      if (!email.value.trim()) {
+        statusEl.textContent = 'Please enter your email.';
+        statusEl.classList.remove('visually-hidden');
+        email.focus();
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      statusEl.classList.add('visually-hidden');
+      statusEl.textContent = '';
+
+      try {
+        const fd = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: fd,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successState.style.display = 'block';
+        } else {
+          const data = await res.json().catch(()=> ({}));
+          const msg = (data && data.errors && data.errors[0] && data.errors[0].message)
+            ? data.errors[0].message
+            : 'Submission failed. Please try again or email us.';
+          statusEl.textContent = msg;
+          statusEl.classList.remove('visually-hidden');
+        }
+      } catch (err) {
+        statusEl.textContent = 'Network error. Please try again in a moment.';
+        statusEl.classList.remove('visually-hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Request access';
+      }
+    });
+
+    closeAfterSuccess?.addEventListener('click', closeModal);
   </script>
 </body>
 </html>
