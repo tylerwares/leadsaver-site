@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LeadSaver lifesaver icon">
+  <defs>
+    <style>
+      .navy { fill: #153A5B; }
+      .navy-stroke { stroke: #153A5B; stroke-width: 12; fill: none; }
+      .orange { fill: #FF6A3D; }
+      .white { fill: #FFFFFF; }
+    </style>
+  </defs>
+  <!-- Outer navy border -->
+  <circle cx="256" cy="256" r="232" class="navy-stroke"/>
+  <!-- Orange ring -->
+  <circle cx="256" cy="256" r="220" class="orange"/>
+  <circle cx="256" cy="256" r="140" fill="white"/>
+  <!-- punch hole by masking -->
+  <mask id="hole">
+    <rect x="0" y="0" width="512" height="512" fill="black"/>
+    <circle cx="256" cy="256" r="220" fill="white"/>
+    <circle cx="256" cy="256" r="140" fill="black"/>
+  </mask>
+  <g mask="url(#hole)">
+    <!-- White straps -->
+    <g transform="translate(256,256)">
+      <rect x="-170" y="-18" width="340" height="36" rx="18" fill="white" transform="rotate(45)"/>
+      <rect x="-170" y="-18" width="340" height="36" rx="18" fill="white" transform="rotate(135)"/>
+    </g>
+  </g>
+  <!-- Inner hub -->
+  <circle cx="256" cy="256" r="88" class="navy"/>
+  <!-- Phone handset (arc with end caps) -->
+  <g transform="translate(256,256)">
+    <path d="
+      M -58 -40
+      A 70 70 0 0 1 58 -40
+    " stroke="white" stroke-width="26" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
