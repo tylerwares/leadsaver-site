@@ -3,125 +3,106 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LeadSaver — Never Lose Another Customer to Voicemail</title>
-  <meta name="description" content="LeadSaver automatically texts back missed calls so you turn them into booked jobs. 14-day free trial. No setup fee during Founders Beta." />
-  <meta property="og:title" content="LeadSaver — Turn Missed Calls into Booked Jobs" />
-  <meta property="og:description" content="Automatically text back missed calls, capture the lead, and book more jobs. 14-day free trial. Founders Beta open now." />
+  <title>LeadSaver — Turn missed calls into booked jobs (14-day free trial)</title>
+  <meta name="description" content="LeadSaver automatically texts back missed calls so you capture the lead and book more jobs. 14-day free trial. Setup fee waived during Founders Beta." />
+  <meta property="og:title" content="LeadSaver — Turn missed calls into booked jobs" />
+  <meta property="og:description" content="Automatically text back missed calls in seconds. Book more jobs without hiring more staff. 14-day free trial." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.leadsaver.ca/" />
-  <meta property="og:image" content="https://www.leadsaver.ca/og-image.png" />
-  <link rel="icon" href="/favicon.ico" />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <style>
     :root{
-      --bg:#0b0f13;
-      --panel:#11161c;
-      --muted:#9fb2c6;
-      --text:#e8f0f7;
-      --brand:#4cc9f0;
-      --accent:#7bdeff;
-      --ok:#16c47f;
-      --warn:#ffce3a;
-      --danger:#ff6b6b;
-      --ring:0 0 0 4px rgba(76,201,240,.15);
-      --shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+      /* Color system: trustworthy navy + modern cyan accents */
+      --bg:#0b1220;           /* page background (very dark navy) */
+      --surface:#0f172a;      /* panels/cards (slate 900) */
+      --muted:#a8b3c7;        /* secondary text */
+      --text:#e9f2ff;         /* primary text */
+      --brand:#22d3ee;        /* cyan 400 */
+      --brand-strong:#06b6d4; /* cyan 500 */
+      --ring:0 0 0 4px rgba(34,211,238,.18);
+      --border:rgba(255,255,255,.08);
+      --shadow:0 14px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
       --radius:16px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0f13 0%, #0b1219 60%, #0b0f13 100%);color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.45}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
+    html,body{margin:0;background:
+      radial-gradient(800px 600px at 10% 5%, rgba(34,211,238,.07), transparent 60%),
+      radial-gradient(700px 500px at 90% 10%, rgba(56,189,248,.06), transparent 60%),
+      var(--bg);
+      color:var(--text);font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif;line-height:1.45}
+    a{color:var(--brand)} a:hover{text-decoration:underline}
     .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-    header.topbar{position:sticky;top:0;z-index:50;background:rgba(11,15,19,.75);backdrop-filter:saturate(1.5) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
-    .logo svg{width:28px;height:28px}
-    .beta-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(76,201,240,.12);border:1px solid rgba(76,201,240,.35);color:#cfefff;padding:6px 10px;border-radius:999px;font-size:12px}
-    .cta{appearance:none;border:0;cursor:pointer;background:linear-gradient(180deg,var(--brand),var(--accent));color:#062133;font-weight:800;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transition:.2s transform,.2s box-shadow}
+    header{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand img{height:28px;width:auto}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.35);color:#cff7ff;padding:6px 10px;border-radius:999px;font-size:12px}
+    .cta{appearance:none;border:0;cursor:pointer;background:linear-gradient(180deg,var(--brand),var(--brand-strong));color:#04222a;font-weight:900;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transition:.2s transform}
     .cta:hover{transform:translateY(-1px)}
-    .cta:active{transform:translateY(0);box-shadow:0 4px 14px rgba(0,0,0,.35)}
-    .cta.secondary{background:#1a2330;color:#cfe4ff;border:1px solid rgba(255,255,255,.08)}
-    .hero{padding:64px 0 24px}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
-    .headline{font-size:46px;line-height:1.08;margin:8px 0 16px;font-weight:900;letter-spacing:-.3px}
+    .cta.secondary{background:#122032;color:#cfe3ff;border:1px solid var(--border)}
+    .hero{padding:64px 0 32px}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+    h1{font-size:46px;line-height:1.08;margin:8px 0 16px;font-weight:900;letter-spacing:-.3px}
     .sub{color:var(--muted);font-size:18px;margin:0 0 22px}
     .hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-    .trustline{font-size:13px;color:#b8c7d6}
-    .mock{background:linear-gradient(180deg,#0f1621,#0b1119);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
-    .phone{background:#0d141d;border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:14px;max-width:360px;margin:0 auto}
-    .screen{background:#0b1119;border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:14px;min-height:520px;display:flex;flex-direction:column;gap:10px}
-    .sms{display:flex;gap:10px}
-    .bubble{max-width:78%;padding:10px 12px;border-radius:14px;font-size:14px}
-    .bubble.me{margin-left:auto;background:#18324a;border:1px solid rgba(124,197,255,.25)}
-    .bubble.you{background:#172234;border:1px solid rgba(255,255,255,.08)}
-    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok);box-shadow:0 0 0 4px rgba(22,196,127,.18)}
+    .trust{font-size:13px;color:#c8d5e9}
+    .panel{background:linear-gradient(180deg,#0f172a,#0e1424);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .mock{display:flex;align-items:center;justify-content:center}
+    .mock img{max-width:100%;height:auto;border-radius:22px;border:1px solid var(--border);background:#0b1422}
     section{padding:56px 0}
-    .section-title{font-size:28px;margin:0 0 8px}
-    .section-sub{color:var(--muted);margin:0 0 24px}
+    .title{font-size:28px;margin:0 0 6px}
+    .lead{color:var(--muted);margin:0 0 24px}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
-    .card h3{margin:0 0 6px}
-    .icon{width:22px;height:22px;vertical-align:-4px;margin-right:8px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
     .how{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .step{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
-    .step-num{font-weight:800;color:var(--brand);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+    .step{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+    .step .n{font-weight:800;color:var(--brand);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
     .price-wrap{display:grid;grid-template-columns:1fr .9fr;gap:18px;align-items:stretch}
-    .price{background:linear-gradient(180deg,#101723,#0c121a);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px}
-    .price h3{margin:0 0 6px}
-    .big{font-size:40px;font-weight:900;letter-spacing:-.5px}
-    .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(124,197,255,.12);border:1px solid rgba(124,197,255,.35);padding:6px 10px;border-radius:999px;font-size:12px;margin-left:8px}
-    .list{list-style:none;margin:12px 0 0;padding:0;color:#cfe4ff}
+    .price .big{font-size:40px;font-weight:900;letter-spacing:-.5px}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);padding:6px 10px;border-radius:999px;font-size:12px;margin-left:8px}
+    .list{list-style:none;margin:12px 0 0;padding:0}
     .list li{display:flex;gap:10px;margin:10px 0}
-    .li-dot{width:9px;height:9px;border-radius:999px;background:var(--ok);margin-top:6px}
+    .dot{width:9px;height:9px;border-radius:999px;background:#16c47f;margin-top:6px}
     .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    details{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px}
-    summary{cursor:pointer;font-weight:700}
-    footer{padding:28px 0;color:#9fb2c6;border-top:1px solid rgba(255,255,255,.08)}
-    footer a{color:#cfe4ff}
+    details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+    summary{cursor:pointer;font-weight:800}
+    footer{padding:28px 0;color:#a7b5c9;border-top:1px solid var(--border)}
+    footer a{color:#d7e8ff}
     /* Modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,7,12,.68);backdrop-filter:blur(6px)}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(4,9,16,.68);backdrop-filter:blur(8px)}
     .modal.open{display:flex}
-    .sheet{background:#0d141d;border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:var(--shadow);width:min(720px,94vw);max-height:88vh;overflow:auto}
-    .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .sheet{background:#0e1626;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);width:min(720px,94vw);max-height:88vh;overflow:auto}
+    .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 10px;border-bottom:1px solid var(--border)}
     .sheet-body{padding:18px}
-    .x{background:none;border:0;color:#cfe4ff;font-size:22px;cursor:pointer}
+    .x{background:none;border:0;color:#e9f2ff;font-size:22px;cursor:pointer}
     form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    label{font-size:13px;color:#cfe4ff}
-    input,select,textarea{width:100%;padding:12px 12px;border-radius:12px;background:#0a1118;border:1px solid rgba(255,255,255,.08);color:#e9f2fb}
-    input:focus,select:focus,textarea:focus{outline:none;box-shadow:var(--ring);border-color:rgba(124,197,255,.5)}
+    label{font-size:13px;color:#dfeaff}
+    input,select,textarea{width:100%;padding:12px;border-radius:12px;background:#0a1322;border:1px solid var(--border);color:#e9f2ff}
+    input:focus,select:focus,textarea:focus{outline:none;box-shadow:var(--ring);border-color:rgba(34,211,238,.55)}
     textarea{min-height:110px;grid-column:1 / -1}
-    .form-row{display:flex;gap:12px;align-items:center}
     .form-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:6px;grid-column:1 / -1}
-    .help{font-size:12px;color:#9fb2c6}
-    .danger{color:var(--danger)}
-    .success{color:var(--ok)}
-    .hide{display:none}
+    .help{font-size:12px;color:#a8b3c7}
+    .danger{color:#ff6b6b}.success{color:#16c47f}
     @media (max-width:980px){
-      .hero-grid,.how,.price-wrap,.cards,.faq{grid-template-columns:1fr}
-      .headline{font-size:36px}
-      .screen{min-height:420px}
+      .grid,.how,.price-wrap,.cards,.faq{grid-template-columns:1fr}
+      h1{font-size:36px}
       form{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="logo" aria-label="LeadSaver">
-        <!-- Inline logo (replace anytime) -->
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="4" y="8" width="40" height="32" rx="8" fill="#132130" stroke="#4cc9f0" stroke-width="2"/>
-          <circle cx="16" cy="24" r="6" fill="#4cc9f0"/>
-          <path d="M28 20h12v8H28z" fill="#1d2b3c" stroke="#7bdeff" stroke-width="2"/>
-        </svg>
-        <span>LeadSaver</span>
-        <span class="beta-pill" title="Founders Beta">
-          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.3L12 17l-5.5 2.6 1-6.3L3 8.9 9 8l3-6z"/></svg>
-          Founders Beta • 14-day free trial
-        </span>
+  <header>
+    <div class="wrap head">
+      <div class="brand">
+        <!-- LOGO PLACEHOLDER — replace file later -->
+        <img src="/assets/logo-horizontal.svg" alt="LeadSaver" width="164" height="28" />
+        <span class="pill">Founders Beta • 14-day free trial</span>
       </div>
-      <div class="top-ctas">
-        <button class="cta secondary" data-open-modal>View Pricing</button>
-        <button class="cta" data-open-modal>Start Free Trial</button>
+      <div class="actions">
+        <button class="cta secondary" data-open>Pricing</button>
+        <button class="cta" data-open>Start Free Trial</button>
       </div>
     </div>
   </header>
@@ -129,49 +110,20 @@
   <main>
     <!-- HERO -->
     <section class="hero">
-      <div class="wrap hero-grid">
+      <div class="wrap grid">
         <div>
-          <p class="beta-pill" style="margin:0 0 12px 0">Setup fee waived during beta</p>
-          <h1 class="headline">Never lose another customer to voicemail.</h1>
-          <p class="sub">LeadSaver automatically texts back missed calls in seconds with your booking link or next steps—so you turn more calls into booked jobs.</p>
+          <p class="pill" style="margin:0 0 12px 0">Setup fee waived during beta</p>
+          <h1>Turn missed calls into booked jobs — automatically.</h1>
+          <p class="sub">LeadSaver texts back missed calls in seconds with your booking link or next steps. Keep callers warm. Capture the lead. Win the job.</p>
           <div class="hero-cta">
-            <button class="cta" data-open-modal aria-haspopup="dialog">Claim My 14-Day Free Trial</button>
-            <button class="cta secondary" data-open-modal>See How It Works</button>
-            <div class="trustline">No credit card required • Cancel anytime • We never sell or share your data</div>
+            <button class="cta" data-open aria-haspopup="dialog">Claim My 14-Day Free Trial</button>
+            <button class="cta secondary" data-open>See How It Works</button>
+            <div class="trust">No credit card • Cancel anytime • We don’t sell or share your data</div>
           </div>
         </div>
-
-        <!-- Simple mockup (replace later with real screenshot) -->
-        <div class="mock" aria-hidden="true">
-          <div class="phone">
-            <div class="screen">
-              <div class="sms">
-                <div class="bubble you">
-                  Missed call from <strong>(519) 555-0134</strong><br/>
-                  Caller did not leave voicemail.
-                </div>
-              </div>
-              <div class="sms">
-                <div class="bubble me">
-                  Hi, this is <strong>BrightSide Plumbing</strong>. Sorry we missed your call! You can book the next available slot here:
-                  <br><a href="#">brightsideplumbing.com/book</a>
-                </div>
-              </div>
-              <div class="sms">
-                <div class="bubble you">
-                  Thanks! Just booked for Thursday morning.
-                </div>
-              </div>
-              <div class="sms">
-                <div class="bubble me">
-                  Got it ✅ You’ll receive a confirmation shortly.
-                </div>
-              </div>
-              <div style="margin-top:auto;display:flex;align-items:center;gap:8px;color:#a8c6e4;font-size:12px">
-                <span class="dot"></span> LeadSaver auto-reply active
-              </div>
-            </div>
-          </div>
+        <div class="panel mock" aria-hidden="true">
+          <!-- HERO MOCKUP PLACEHOLDER — replace file later -->
+          <img src="/assets/hero-phone-mock.png" alt="Auto-reply SMS mockup" width="640" height="420" />
         </div>
       </div>
     </section>
@@ -179,20 +131,24 @@
     <!-- BENEFITS -->
     <section>
       <div class="wrap">
-        <h2 class="section-title">Built for busy local service businesses</h2>
-        <p class="section-sub">Keep callers warm, capture the lead, and get booked without hiring extra staff.</p>
+        <h2 class="title">Built for busy local service businesses</h2>
+        <p class="lead">Book more work without hiring more staff.</p>
         <div class="cards">
           <div class="card">
-            <h3><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12a9 9 0 1118 0 9 9 0 01-18 0zm10-5v5l4 2"/></svg>Instant auto-reply</h3>
-            <p>We text back in seconds when you miss a call—while their intent is highest.</p>
+            <h3>Instant auto-reply</h3>
+            <p>Text back in seconds when a call is missed — while intent is highest.</p>
+            <!-- BENEFIT IMAGE PLACEHOLDER -->
+            <img src="/assets/feature-instant-reply.png" alt="Instant reply visual" width="560" height="280" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--border);margin-top:8px;background:#0b1422">
           </div>
           <div class="card">
-            <h3><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M4 5h16v14H4zM7 8h10v2H7zM7 12h6v2H7z"/></svg>Booking link ready</h3>
-            <p>Drop in Calendly/YouCanBook.Me or your own booking page. Zero new tools to learn.</p>
+            <h3>Booking link ready</h3>
+            <p>Drop in Calendly/YouCanBook.Me or your own page. Zero new tools to learn.</p>
+            <img src="/assets/feature-booking-link.png" alt="Booking link example" width="560" height="280" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--border);margin-top:8px;background:#0b1422">
           </div>
           <div class="card">
-            <h3><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l9 4v6c0 5-3.8 9.7-9 10-5.2-.3-9-5-9-10V6l9-4z"/></svg>Customize the message</h3>
+            <h3>Customize the message</h3>
             <p>Use your brand voice: quick apology, link, and next steps that fit your workflow.</p>
+            <img src="/assets/feature-customize.png" alt="Custom message example" width="560" height="280" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--border);margin-top:8px;background:#0b1422">
           </div>
         </div>
       </div>
@@ -201,29 +157,41 @@
     <!-- HOW IT WORKS -->
     <section>
       <div class="wrap">
-        <h2 class="section-title">How LeadSaver works</h2>
-        <p class="section-sub">Set up in minutes. No number porting required.</p>
+        <h2 class="title">How LeadSaver works</h2>
+        <p class="lead">Set up in minutes. Keep your current phone number.</p>
         <div class="how">
           <div class="step">
-            <div class="step-num">Step 1</div>
+            <div class="n">Step 1</div>
             <h3>Connect your business number</h3>
-            <p>Keep your current phone setup. We just watch for missed calls.</p>
+            <p>We simply watch for missed calls — no porting required.</p>
           </div>
           <div class="step">
-            <div class="step-num">Step 2</div>
+            <div class="n">Step 2</div>
             <h3>Choose your reply</h3>
-            <p>We’ll help you craft a short text with your booking link or instructions.</p>
+            <p>We’ll help craft a short text with your booking link or next steps.</p>
           </div>
           <div class="step">
-            <div class="step-num">Step 3</div>
+            <div class="n">Step 3</div>
             <h3>We text back instantly</h3>
-            <p>Every missed call gets a friendly, branded message within seconds.</p>
+            <p>Every missed call gets a friendly, branded message in seconds.</p>
           </div>
           <div class="step">
-            <div class="step-num">Step 4</div>
+            <div class="n">Step 4</div>
             <h3>You get the lead</h3>
-            <p>The caller books or replies, and you win the job you would’ve lost to voicemail.</p>
+            <p>The caller books or replies — you win the job you would’ve lost to voicemail.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT UI (optional visual trust) -->
+    <section>
+      <div class="wrap">
+        <h2 class="title">What it looks like</h2>
+        <p class="lead">A simple, helpful text thread. Nothing spammy.</p>
+        <div class="panel mock">
+          <!-- UI SCREENSHOT PLACEHOLDER -->
+          <img src="/assets/ui-sms-thread.png" alt="LeadSaver SMS thread example" width="960" height="540" />
         </div>
       </div>
     </section>
@@ -231,34 +199,33 @@
     <!-- PRICING / OFFER -->
     <section>
       <div class="wrap price-wrap">
-        <div class="price">
+        <div class="panel price">
           <h3>Simple pricing</h3>
           <div style="display:flex;align-items:center;gap:8px;margin:8px 0 2px">
-            <div class="big">$247<span style="font-size:18px;font-weight:700">/month</span></div>
-            <span class="badge" title="Founders Beta special">Setup fee waived</span>
+            <div class="big">$247<span style="font-size:18px;font-weight:800">/month</span></div>
+            <span class="badge">Setup fee waived (Founders Beta)</span>
           </div>
-          <p class="section-sub" style="margin-top:6px">Founders Beta includes a <strong>14-day free trial</strong>. Pay nothing today. Cancel anytime.</p>
+          <p class="lead" style="margin-top:6px">Try it free for 14 days — pay nothing today. Cancel anytime.</p>
           <ul class="list">
-            <li><span class="li-dot"></span><span>Instant missed-call auto-reply</span></li>
-            <li><span class="li-dot"></span><span>Custom templates & booking link</span></li>
-            <li><span class="li-dot"></span><span>Email summaries (coming soon)</span></li>
-            <li><span class="li-dot"></span><span>Human onboarding help during beta</span></li>
+            <li><span class="dot"></span><span>Instant missed-call auto-reply</span></li>
+            <li><span class="dot"></span><span>Custom templates & booking link</span></li>
+            <li><span class="dot"></span><span>Email summaries (coming soon)</span></li>
+            <li><span class="dot"></span><span>Human onboarding help during beta</span></li>
           </ul>
           <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
-            <button class="cta" data-open-modal>Start Free Trial</button>
-            <button class="cta secondary" data-open-modal>Ask a Question</button>
+            <button class="cta" data-open>Start Free Trial</button>
+            <button class="cta secondary" data-open>Ask a Question</button>
           </div>
-          <p class="trustline" style="margin-top:10px">No credit card required • We don’t sell or share your data</p>
+          <p class="trust" style="margin-top:10px">No credit card • We don’t sell or share your data</p>
         </div>
 
-        <!-- ROI framing -->
         <div class="card">
           <h3>Make the math easy</h3>
-          <p>If one missed call is worth even <strong>$150–$500</strong> to your business, recovering just <strong>1–2 jobs/month</strong> pays for LeadSaver.</p>
-          <p>During beta, we’re focused on local service businesses where availability and quick replies win the job.</p>
+          <p>If one missed call is worth <strong>$150–$500</strong>, recovering just <strong>1–2 jobs/month</strong> pays for LeadSaver.</p>
+          <p>Founders Beta is limited. Lock in early and keep your spot as we add features.</p>
           <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-            <button class="cta" data-open-modal>Claim My Beta Spot</button>
-            <span class="badge"><svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 5v6h5v2h-7V7h2z"/></svg>Limited founder slots</span>
+            <button class="cta" data-open>Claim My Beta Spot</button>
+            <span class="badge">Limited founder slots</span>
           </div>
         </div>
       </div>
@@ -267,8 +234,8 @@
     <!-- FAQ -->
     <section>
       <div class="wrap">
-        <h2 class="section-title">FAQ</h2>
-        <p class="section-sub">Straight answers. No fluff.</p>
+        <h2 class="title">FAQ</h2>
+        <p class="lead">Straight answers. No fluff.</p>
         <div class="faq">
           <details>
             <summary>Do I need to change my phone number?</summary>
@@ -276,22 +243,21 @@
           </details>
           <details>
             <summary>Will customers think it’s spam?</summary>
-            <p>We send one short, helpful text immediately after the missed call, using your brand name and booking link. You control the wording.</p>
+            <p>We send one short, helpful text immediately after the missed call, using your business name and booking link. You control the wording.</p>
           </details>
           <details>
             <summary>What happens after the 14-day trial?</summary>
-            <p>If you continue, it’s $247/month. You can cancel anytime. Setup fee is waived during Founders Beta.</p>
+            <p>If you continue, it’s $247/month. Cancel anytime. Setup fee is waived during Founders Beta.</p>
           </details>
           <details>
             <summary>Do you encrypt data?</summary>
-            <p>We don’t sell or share your data. During beta we’re keeping the system simple and secure by design, without marketing extras. If you have specific compliance needs, tell us in your message and we’ll discuss.</p>
+            <p>We don’t sell or share your data. During beta we’re keeping the system simple and secure by design, without extra marketing add-ons. If you have specific compliance needs, tell us in your message and we’ll discuss.</p>
           </details>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
       <div>&copy; <span id="y"></span> LeadSaver. All rights reserved.</div>
@@ -308,7 +274,7 @@
     <div class="sheet">
       <div class="sheet-head">
         <h3 id="formTitle" style="margin:0">Claim your 14-day free trial</h3>
-        <button class="x" data-close-modal aria-label="Close">×</button>
+        <button class="x" data-close aria-label="Close">×</button>
       </div>
       <div class="sheet-body">
         <p class="help" style="margin-top:0">Founders Beta: setup fee waived • limited spots available</p>
@@ -319,7 +285,7 @@
           </div>
           <div>
             <label for="email">Work email *</label>
-            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+            <input id="email" name="email" type="email" autocomplete="email" required />
           </div>
           <div>
             <label for="phone">Phone (recommended)</label>
@@ -337,14 +303,9 @@
             <label for="industry">Industry</label>
             <select id="industry" name="industry">
               <option value="">Select…</option>
-              <option>Plumbing</option>
-              <option>HVAC</option>
-              <option>Electrical</option>
-              <option>Landscaping</option>
-              <option>Roofing</option>
-              <option>Cleaning</option>
-              <option>Salon / Spa</option>
-              <option>Other</option>
+              <option>Plumbing</option><option>HVAC</option><option>Electrical</option>
+              <option>Landscaping</option><option>Roofing</option><option>Cleaning</option>
+              <option>Salon / Spa</option><option>Other</option>
             </select>
           </div>
           <textarea id="notes" name="notes" placeholder="Anything we should know? e.g., booking tool, call volume, special instructions"></textarea>
@@ -352,10 +313,10 @@
           <!-- meta -->
           <input type="hidden" name="page" id="pageField" />
           <input type="hidden" name="_subject" value="LeadSaver — New Beta Trial Request" />
-          <input type="text" name="_gotcha" class="hide" aria-hidden="true" tabindex="-1" />
+          <input type="text" name="_gotcha" class="hide" aria-hidden="true" tabindex="-1" style="display:none" />
 
           <div class="form-foot">
-            <div class="help">No credit card required • Cancel anytime • We don’t sell or share your data</div>
+            <div class="help">No credit card • Cancel anytime • We don’t sell or share your data</div>
             <button class="cta" id="submitBtn" type="submit">Start My Free Trial</button>
           </div>
           <div id="formMsg" class="help" role="status" style="margin-top:6px"></div>
@@ -365,45 +326,32 @@
   </div>
 
   <script>
-    // Year
+    // Year + modal + form helpers
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Modal logic
     const modal = document.getElementById('modal');
-    const openBtns = document.querySelectorAll('[data-open-modal]');
-    const closeBtn = document.querySelector('[data-close-modal]');
-    const sheet = modal.querySelector('.sheet');
-
-    function openModal(){ modal.classList.add('open'); setTimeout(()=>sheet.focus?.(), 0); }
-    function closeModal(){ modal.classList.remove('open'); }
-
-    openBtns.forEach(b=>b.addEventListener('click', openModal));
-    document.querySelectorAll('[data-close-modal]').forEach(b=>b.addEventListener('click', closeModal));
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
-
-    // Form helpers
+    const openBtns = document.querySelectorAll('[data-open]');
+    const closeBtn = document.querySelector('[data-close]');
     const form = document.getElementById('leadForm');
     const msg = document.getElementById('formMsg');
     const submitBtn = document.getElementById('submitBtn');
     document.getElementById('pageField').value = location.href;
 
-    function showMessage(text, ok=true){
-      msg.textContent = text;
-      msg.classList.remove('danger','success');
-      msg.classList.add(ok ? 'success' : 'danger');
-    }
+    function open(){ modal.classList.add('open'); }
+    function close(){ modal.classList.remove('open'); }
+    openBtns.forEach(b=>b.addEventListener('click', open));
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) close(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('open')) close(); });
 
     form.addEventListener('submit', function(e){
-      // Basic client-side validation
       if(!form.checkValidity()){
         e.preventDefault();
-        showMessage('Please complete the required fields marked with *', false);
+        msg.textContent='Please complete the required fields marked with *';
+        msg.classList.remove('success'); msg.classList.add('danger');
         return;
       }
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting…';
-      // Let Formspree handle submission + redirect/thank-you
     });
   </script>
 </body>
