@@ -35,6 +35,42 @@
     @media (min-width: 768px){
       :root{ --radius: 16px; }
     }
+    /* Mobile header fixes */
+    @media (max-width: 640px) {
+      .nav-actions a.btn.link { display: none; } /* hide secondary links */
+      .brand h1 { font-size: 16px; }
+      .nav { padding: 10px 0; }
+    
+      .btn.primary {
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+    }
+    
+    /* Optional: hamburger menu for nav */
+    .hamburger {
+      display: none;
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 640px) {
+      .hamburger { display: inline-flex; }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        position: absolute;
+        top: 60px; right: 12px;
+        box-shadow: var(--shadow);
+      }
+      .nav-menu.open { display: flex; }
+      .nav-menu a { padding: 10px 16px; }
+    }
 
     /* ============ Base ============ */
     *{box-sizing:border-box}
@@ -204,16 +240,20 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo-dot" aria-hidden="true"></div>
+        <div class="logo-dot"></div>
         <h1>LeadSaver</h1>
       </div>
-      <nav class="nav-actions" aria-label="primary">
-        <a class="btn link" href="#how">How it works</a>
-        <a class="btn link" href="#pricing">Pricing</a>
+      <nav class="nav-actions">
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+        <div class="nav-menu">
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+        </div>
         <a class="btn primary" href="#signupModal" data-open-modal>Start Free Trial</a>
       </nav>
     </div>
   </header>
+
 
   <!-- Hero -->
   <section class="hero" role="region" aria-label="LeadSaver hero">
@@ -436,6 +476,9 @@
     }
     job && job.addEventListener('input', calc);
     saved && saved.addEventListener('input', calc);
+    document.querySelector('.hamburger').addEventListener('click', ()=>{
+      document.querySelector('.nav-menu').classList.toggle('open');
+    });
 
     // Modal open/close with native <dialog> & graceful fallback
     const modal = document.getElementById('signupModal');
