@@ -1,202 +1,353 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>LeadSaver — Turn missed calls into booked jobs</title>
-  <meta name="description" content="LeadSaver automatically texts back missed calls so you capture the lead and book more jobs. 14-day free trial. Setup fee waived during Founders Beta."/>
-  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32"/>
-  <meta property="og:title" content="LeadSaver — Turn missed calls into booked jobs"/>
-  <meta property="og:description" content="Automatically text back missed calls in seconds. 14-day free trial."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://www.leadsaver.ca/"/>
-
-  <style>
-    :root{
-      --bg:#0b1220; --panel:#0f172a; --text:#e9f2ff; --muted:#a8b3c7;
-      --brand:#22d3ee; --brand-strong:#06b6d4; --border:rgba(255,255,255,.08);
-      --ring:0 0 0 4px rgba(34,211,238,.18); --radius:14px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;line-height:1.45}
-    .wrap{max-width:960px;margin:0 auto;padding:0 18px}
-    header{position:sticky;top:0;z-index:10;background:rgba(11,18,32,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-    .head{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand .mark{width:22px;height:22px;border-radius:6px;background:var(--brand)}
-    .cta{appearance:none;border:0;cursor:pointer;background:linear-gradient(180deg,var(--brand),var(--brand-strong));color:#04222a;font-weight:900;padding:12px 16px;border-radius:10px}
-    .hero{padding:64px 0 24px;text-align:center}
-    h1{font-size:40px;line-height:1.08;margin:8px 0 12px;font-weight:900;letter-spacing:-.3px}
-    .sub{color:var(--muted);font-size:18px;margin:0 0 18px}
-    .pill{display:inline-block;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.35);color:#cff7ff;padding:6px 10px;border-radius:999px;font-size:12px}
-    section{padding:40px 0}
-    .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-    .cols{display:grid;grid-template-columns:1fr;gap:14px}
-    .cols.two{grid-template-columns:1fr 1fr}
-    .list{list-style:none;margin:0;padding:0;color:#d7e5ff}
-    .list li{display:flex;gap:10px;margin:8px 0}
-    .dot{width:8px;height:8px;border-radius:999px;background:#16c47f;margin-top:8px}
-    footer{padding:28px 0;color:#a7b5c9;border-top:1px solid var(--border);font-size:14px}
-    footer a{color:#d7e8ff;text-decoration:none}
-    footer a:hover{text-decoration:underline}
-    /* Modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(4,9,16,.65);backdrop-filter:blur(6px)}
-    .modal.open{display:flex}
-    .sheet{background:#0e1626;border:1px solid var(--border);border-radius:16px;width:min(600px,92vw);padding:18px}
-    .sheet h3{margin:0 0 8px}
-    label{font-size:13px;color:#dfeaff}
-    form{display:grid;grid-template-columns:1fr;gap:10px}
-    input,select,textarea{width:100%;padding:12px;border-radius:12px;background:#0a1322;border:1px solid var(--border);color:#e9f2ff}
-    input:focus,select:focus,textarea:focus{outline:none;box-shadow:var(--ring)}
-    .help{font-size:12px;color:#a8b3c7}
-    .x{background:none;border:0;color:#e9f2ff;font-size:22px;cursor:pointer;position:absolute;top:10px;right:14px}
-    @media (max-width:800px){ h1{font-size:32px} .cols.two{grid-template-columns:1fr} }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadSaver - Never Miss Another Customer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="wrap head">
-      <div class="brand">
-        <!-- minimal mark to avoid image dependencies -->
-        <div class="mark" aria-hidden="true"></div>
-        LeadSaver
-      </div>
-      <!-- ONE primary CTA (same action everywhere) -->
-      <button class="cta" data-open>Start 14-Day Free Trial</button>
-    </div>
-  </header>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">LeadSaver</div>
+            <a href="#cta" class="btn btn-primary-small">Start Free Trial</a>
+        </div>
+    </header>
 
-  <main>
-    <!-- HERO -->
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="wrap">
-        <p class="pill">Founders Beta • setup fee waived</p>
-        <h1>Never lose another customer to voicemail.</h1>
-        <p class="sub">LeadSaver texts back missed calls in seconds with your booking link or next steps—so you turn more calls into booked jobs.</p>
-        <button class="cta" data-open aria-haspopup="dialog">Start 14-Day Free Trial</button>
-        <p class="help" style="margin-top:8px">No credit card • Cancel anytime • We don’t sell or share your data</p>
-      </div>
+        <div class="container">
+            <h1 class="hero-headline">Missed Calls = Lost Jobs.<br>LeadSaver Books Them Back.</h1>
+            <p class="hero-subheadline">We're waiving the $299 setup fee for the first 20 customers.</p>
+            
+            <div class="split-visual">
+                <div class="split-card split-without">
+                    <div class="split-icon">❌</div>
+                    <h3>Without LeadSaver</h3>
+                    <div class="flow-diagram">
+                        <div class="flow-step">📞 Missed Call</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">😞 Lost Job</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">💸 Competitor Wins</div>
+                    </div>
+                </div>
+                
+                <div class="split-card split-with">
+                    <div class="split-icon">✅</div>
+                    <h3>With LeadSaver</h3>
+                    <div class="flow-diagram">
+                        <div class="flow-step">📞 Missed Call</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">💬 Auto-Text Sent</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">✨ Job Booked</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#cta" class="btn btn-cta">Start Free Trial — Claim Waived Setup</a>
+            <p class="trust-note">⚡ Responding within 5 minutes makes you 21× more likely to win the job.</p>
+        </div>
     </section>
 
-    <!-- HOW IT WORKS (ultra concise) -->
-    <section>
-      <div class="wrap cols two">
-        <div class="panel">
-          <h3 style="margin-top:0">How it works</h3>
-          <ol class="list" style="counter-reset:step">
-            <li><span class="dot"></span><span><strong>Connect your number.</strong> Keep your current setup—we only act on missed calls.</span></li>
-            <li><span class="dot"></span><span><strong>Choose your reply.</strong> Short text + booking link in your brand voice.</span></li>
-            <li><span class="dot"></span><span><strong>We text back instantly.</strong> Caller books or replies; you win the job.</span></li>
-          </ol>
+    <!-- ROI Calculator Section -->
+    <section class="roi-calculator">
+        <div class="container">
+            <h2>See How Much Revenue You're Losing</h2>
+            <p class="section-subtitle">Calculate the cost of missed calls to your business</p>
+            
+            <div class="calculator-grid">
+                <div class="calculator-input">
+                    <label for="missedCalls">Missed calls per week</label>
+                    <input type="number" id="missedCalls" value="10" min="1" max="100">
+                </div>
+                
+                <div class="calculator-input">
+                    <label for="avgJobValue">Average job value ($)</label>
+                    <input type="number" id="avgJobValue" value="500" min="50" step="50">
+                </div>
+                
+                <div class="calculator-input">
+                    <label for="conversionRate">Conversion rate (%)</label>
+                    <input type="number" id="conversionRate" value="30" min="1" max="100">
+                </div>
+            </div>
+
+            <div class="calculator-results">
+                <div class="result-card">
+                    <div class="result-label">Lost Revenue Per Month</div>
+                    <div class="result-value" id="lostRevenue">$6,000</div>
+                </div>
+                
+                <div class="result-card result-highlight">
+                    <div class="result-label">LeadSaver Could Recover</div>
+                    <div class="result-value" id="recoveredRevenue">$4,800</div>
+                    <div class="result-note">80% recovery rate</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">ROI in First Month</div>
+                    <div class="result-value" id="roi">1,843%</div>
+                </div>
+            </div>
         </div>
-        <div class="panel">
-          <h3 style="margin-top:0">Why it matters</h3>
-          <ul class="list">
-            <li><span class="dot"></span><span><strong>Speed wins.</strong> Most callers won’t leave voicemail; they call the next business.</span></li>
-            <li><span class="dot"></span><span><strong>Zero extra staff.</strong> Keep prospects warm while you’re on a job.</span></li>
-            <li><span class="dot"></span><span><strong>Pays for itself.</strong> Recover 1–2 jobs/month and you’re ahead.</span></li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <!-- PRICING (single plan, crystal clear) -->
-    <section>
-      <div class="wrap panel">
-        <h3 style="margin:0 0 6px 0">Simple pricing</h3>
-        <p style="margin:0 0 10px 0;font-size:28px;font-weight:900">$247<span style="font-size:16px;font-weight:800">/month</span></p>
-        <p class="help" style="margin:0 0 10px 0">14-day free trial • Pay nothing today • Setup fee waived (beta)</p>
-        <ul class="list">
-          <li><span class="dot"></span><span>Instant missed-call auto-reply</span></li>
-          <li><span class="dot"></span><span>Custom templates & booking link</span></li>
-          <li><span class="dot"></span><span>Email summaries (coming soon)</span></li>
-          <li><span class="dot"></span><span>Human onboarding help during beta</span></li>
-        </ul>
-        <div style="margin-top:14px">
-          <button class="cta" data-open>Start 14-Day Free Trial</button>
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <p class="section-subtitle">Set up in minutes. Start recovering customers today.</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-mockup">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="setup-icon">⚙️</div>
+                                <div class="setup-text">Quick Setup</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Connect Your Number</h3>
+                    <p>Simple 5-minute setup. Works with any phone provider. No technical skills needed.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-mockup">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="message-bubble">
+                                    <p>Hi! Thanks for calling ABC Plumbing. We missed your call but we're here to help. What can we assist you with?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Auto-Text Responds</h3>
+                    <p>When you miss a call, LeadSaver instantly texts back with your custom message.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-mockup">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="booking-icon">📅</div>
+                                <div class="booking-text">Job Booked!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Book More Jobs</h3>
+                    <p>Customers reply, you respond when ready. Never lose another lead to a competitor.</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- FAQ (just the essentials) -->
-    <section>
-      <div class="wrap cols">
-        <div class="panel">
-          <h3 style="margin-top:0">FAQ</h3>
-          <p><strong>Do I need to change my phone number?</strong><br/>No. Keep your existing setup. We only react when a call is missed.</p>
-          <p><strong>Will customers think it’s spam?</strong><br/>We send one short, helpful text immediately after the missed call, using your business name and booking link. You control the wording.</p>
-          <p><strong>What happens after the 14-day trial?</strong><br/>If you continue, it’s $247/month. Cancel anytime. Setup fee is waived during Founders Beta.</p>
+    <!-- Differentiators Section -->
+    <section class="differentiators">
+        <div class="container">
+            <h2>Why LeadSaver?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>No Setup Hassle</h3>
+                    <p>We handle everything. You're up and running in 5 minutes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works With Any Phone</h3>
+                    <p>Compatible with all carriers and phone systems. No hardware needed.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Compliant</h3>
+                    <p>TCPA compliant. Your data is encrypted and protected.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Powered by Twilio & Zapier</h3>
+                    <p>Built on enterprise-grade infrastructure trusted by millions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Customize Everything</h3>
+                    <p>Your messages, your brand, your way. Full control over responses.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Cancel Anytime</h3>
+                    <p>No long-term contracts. No hidden fees. Cancel with one click.</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <div>&copy; <span id="y"></span> LeadSaver</div>
-      <nav style="display:flex;gap:16px">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="mailto:hello@leadsaver.ca">Contact</a>
-      </nav>
-    </div>
-  </footer>
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">One plan. Everything included. No surprises.</p>
+            
+            <div class="pricing-card">
+                <div class="pricing-badge">Limited Time Offer</div>
+                <div class="pricing-header">
+                    <h3>LeadSaver Pro</h3>
+                    <div class="price">
+                        <span class="price-amount">$247</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                </div>
+                
+                <div class="setup-fee">
+                    <span class="fee-crossed">$299 setup fee</span>
+                    <span class="fee-waived">FREE for first 20 customers</span>
+                </div>
+                
+                <ul class="pricing-features">
+                    <li>✅ Unlimited auto-text responses</li>
+                    <li>✅ Custom message templates</li>
+                    <li>✅ Works with any phone provider</li>
+                    <li>✅ Real-time notifications</li>
+                    <li>✅ Detailed analytics dashboard</li>
+                    <li>✅ Priority support</li>
+                    <li>✅ Cancel anytime</li>
+                </ul>
+                
+                <a href="#cta" class="btn btn-cta">Start Free Trial — Save $299</a>
+                <p class="pricing-note">14-day free trial. No credit card required.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- SINGLE MODAL + SINGLE ACTION -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
-    <div class="sheet">
-      <button class="x" data-close aria-label="Close">×</button>
-      <h3 id="formTitle">Start your 14-day free trial</h3>
-      <p class="help" style="margin-top:0">No credit card • Cancel anytime • Limited founder slots</p>
-      <form id="leadForm" action="https://formspree.io/f/xldpnorn" method="POST" novalidate>
-        <label for="name">Full name *</label>
-        <input id="name" name="name" required autocomplete="name"/>
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>Trusted by Businesses Like Yours</h2>
+            <p class="section-subtitle">Be one of the first to share your success story.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-placeholder">
+                        <div class="placeholder-icon">💼</div>
+                        <p>Your success story here</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Your Business Name</strong>
+                        <span>Industry</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-placeholder">
+                        <div class="placeholder-icon">🏆</div>
+                        <p>Join our founding customers</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Your Business Name</strong>
+                        <span>Industry</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-placeholder">
+                        <div class="placeholder-icon">⭐</div>
+                        <p>Share your results</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Your Business Name</strong>
+                        <span>Industry</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <label for="email">Work email *</label>
-        <input id="email" name="email" type="email" required autocomplete="email"/>
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Is LeadSaver legally compliant?</h3>
+                    <p>Yes, absolutely. LeadSaver is fully TCPA compliant. We only text people who have called your business first, which is considered prior express consent. Your customer data is encrypted and secure.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Will this work with my current phone provider?</h3>
+                    <p>Yes! LeadSaver works with any phone provider—landline, mobile, VoIP, or business phone system. No hardware changes needed. We integrate seamlessly with your existing setup.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What happens when customers reply to the text?</h3>
+                    <p>You receive the reply instantly via text or email (your choice). You can respond directly from your phone. It's a real conversation—customers never know it's automated.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How does the free trial work?</h3>
+                    <p>Sign up for a 14-day free trial—no credit card required. Test LeadSaver with real calls. If you're one of the first 20 customers, we'll waive the $299 setup fee when you subscribe.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I customize the auto-text messages?</h3>
+                    <p>You have full control over your messages. Customize them to match your brand voice, include your business hours, or add special offers. Change them anytime.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What if I need to cancel?</h3>
+                    <p>No problem. Cancel anytime with one click from your dashboard. No contracts, no cancellation fees, no questions asked. We only want happy customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <label for="company">Business name *</label>
-        <input id="company" name="company" required/>
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="cta">
+        <div class="container">
+            <div class="cta-content">
+                <div class="urgency-badge">⚠️ Only 20 Founder Slots Left</div>
+                <h2>Don't Lose Your Next Job to a Competitor</h2>
+                <p>Join the first 20 businesses and get the $299 setup fee waived. Start recovering lost customers today.</p>
+                <a href="https://leadsaver.ca/signup" class="btn btn-cta-large">Start Free Trial — Claim Waived Setup</a>
+                <p class="cta-note">14-day free trial • No credit card required • Setup in 5 minutes</p>
+            </div>
+        </div>
+    </section>
 
-        <label for="phone">Phone (recommended)</label>
-        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555"/>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">LeadSaver</div>
+                    <p>Never miss another customer.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 LeadSaver. All rights reserved.</p>
+                <p class="footer-trust">Powered by Twilio & Zapier</p>
+            </div>
+        </div>
+    </footer>
 
-        <textarea id="notes" name="notes" placeholder="Anything we should know? e.g., booking tool, call volume" rows="3"></textarea>
-
-        <input type="hidden" name="page" id="pageField"/>
-        <input type="hidden" name="_subject" value="LeadSaver — New Beta Trial Request"/>
-        <input type="text" name="_gotcha" style="display:none"/>
-
-        <button class="cta" id="submitBtn" type="submit">Submit</button>
-        <div id="formMsg" class="help" role="status"></div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    document.getElementById('pageField').value = location.href;
-
-    const modal = document.getElementById('modal');
-    const openBtns = document.querySelectorAll('[data-open]');
-    const closeBtn = document.querySelector('[data-close]');
-    openBtns.forEach(b=>b.addEventListener('click', ()=>modal.classList.add('open')));
-    closeBtn.addEventListener('click', ()=>modal.classList.remove('open'));
-    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') modal.classList.remove('open'); });
-
-    // minimal client-side validation
-    const form = document.getElementById('leadForm');
-    const msg = document.getElementById('formMsg');
-    const btn = document.getElementById('submitBtn');
-    form.addEventListener('submit', (e)=>{
-      if(!form.checkValidity()){
-        e.preventDefault();
-        msg.textContent = 'Please fill the required fields.';
-        return;
-      }
-      btn.disabled = true; btn.textContent = 'Submitting…';
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
