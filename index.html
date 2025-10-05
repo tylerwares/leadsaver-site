@@ -3,365 +3,289 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeadSaver — Missed calls text back automatically</title>
+  <meta name="description" content="LeadSaver auto-texts callers you miss, so you book the job instead of your competitor. Simple setup, opt-out compliant, and powered by proven technologies." />
 
-  <title>LeadSaver — Turn missed calls into booked jobs</title>
-  <meta name="description" content="LeadSaver automatically texts back missed calls so local businesses never lose customers to competitors." />
-  <meta name="theme-color" content="#0d1b2a" />
+  <!-- Icons (optional, keep if you have them) -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/leadsaver_icon_512.png" />
 
-  <!-- Icons (drop your real files into /assets) -->
-  <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="/assets/leadsaver_icon_512.png" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="LeadSaver — Missed calls text back automatically" />
+  <meta property="og:description" content="LeadSaver auto-texts callers you miss, so you book the job instead of your competitor. Simple setup, opt-out compliant." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.leadsaver.ca/" />
+  <meta property="og:image" content="https://www.leadsaver.ca/assets/hero-split.png" />
 
   <style>
-    :root{
-      --bg:#0d1b2a;           /* deep navy */
-      --ink:#0b1320;          /* heading ink */
-      --text:#22304a;         /* body text */
-      --muted:#6b7a90;        /* secondary */
-      --line:#e8edf3;
-      --cta:#0fb56a;          /* green = success */
-      --cta-dark:#0a8a50;
-      --accent:#ff7a1a;       /* urgency badge */
-      --panel:#ffffff;
-      --wash:#f7fafc;
-      --shadow:0 10px 30px rgba(3,18,33,.10);
-      --radius:18px;
+    :root {
+      --bg: #0b0f14;
+      --panel: #121821;
+      --text: #f4f7fb;
+      --muted: #9fb0c3;
+      --brand: #4aa3ff;
+      --brand-2: #70e1ff;
+      --ok: #23d18b;
+      --danger: #ff647c;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-lg: 18px;
+      --radius: 12px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text); background:#fff; line-height:1.55;
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      background: radial-gradient(1200px 600px at 80% -100px, rgba(74,163,255,.15), transparent 60%),
+                  linear-gradient(180deg, #0b0f14 0%, #0b0f14 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    a{color:var(--ink); text-decoration:none}
-    img{max-width:100%; display:block}
-    .container{width:100%; max-width:1100px; margin:0 auto; padding:0 20px}
-    .topbar{
-      background:var(--bg); color:#fff; padding:10px 0; font-weight:600; position:sticky; top:0; z-index:50;
+    a { color: var(--brand); text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .nav { display:flex; align-items:center; justify-content: space-between; gap: 16px; }
+    .logo { display:flex; align-items:center; gap:10px; font-weight: 700; letter-spacing:.2px; }
+    .logo-badge {
+      width: 34px; height: 34px; display:grid; place-items:center; border-radius: 50%;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      color:#00142a; font-weight:900; box-shadow: var(--shadow);
     }
-    .topbar .badge{background:var(--accent); color:#1b1207; padding:6px 10px; border-radius:999px; margin-right:10px}
-    header{
-      padding:40px 0 10px; border-bottom:1px solid var(--line);
+    .cta {
+      appearance: none; border: 0; cursor: pointer;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      color: #00142a; font-weight: 800; padding: 12px 18px; border-radius: 999px;
+      box-shadow: var(--shadow);
     }
-    .brand{display:flex; align-items:center; gap:12px; font-weight:800; color:var(--ink)}
-    .brand img{width:36px; height:36px}
-    nav a{margin-left:18px; color:var(--muted)}
-    .hero{
-      padding:42px 0 22px;
+    .hero {
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items:center;
+      padding: 28px; background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius-lg); margin-top: 18px; box-shadow: var(--shadow);
     }
-    .hero-grid{
-      display:grid; grid-template-columns:1.2fr 1fr; gap:36px; align-items:center;
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.05; margin: 0 0 10px; }
+    .hero p { color: var(--muted); font-size: 18px; margin: 0 0 16px; }
+    .proofbar { color: var(--muted); font-size: 14px; margin-top: 10px; opacity:.9; }
+    .hero img {
+      width: 100%; height: auto; border-radius: 16px; display:block;
+      background: #0d131b; border: 1px solid rgba(255,255,255,.06);
     }
-    .eyebrow{color:var(--accent); font-weight:800; letter-spacing:.02em; text-transform:uppercase; font-size:.8rem}
-    h1{font-size: clamp(32px, 5vw, 50px); line-height:1.05; margin:6px 0 10px; color:var(--ink)}
-    .sub{font-size: clamp(16px, 2.2vw, 20px); color:#3a4a66}
-    .hero-cta{display:flex; gap:12px; align-items:center; margin-top:18px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:14px 20px; border-radius:12px; font-weight:800; border:0; cursor:pointer;
-      box-shadow:var(--shadow);
+    .strip {
+      margin: 34px 0 0; padding: 12px 16px; border-radius: 999px;
+      background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+      color: var(--muted); font-size:14px;
     }
-    .btn-cta{background:var(--cta); color:#fff}
-    .btn-cta:hover{background:var(--cta-dark)}
-    .btn-ghost{background:#eef4f8; color:#0a2540}
-    .hero-split{
-      display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:10px;
+
+    .three { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 30px; }
+    .card {
+      background: var(--panel); border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
     }
-    .phone-card{
-      background:var(--wash); border:1px solid var(--line); border-radius:var(--radius); padding:16px;
-      box-shadow:var(--shadow)
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .panel {
+      margin-top: 34px; padding: 22px; border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
     }
-    .caption{font-weight:700; text-align:center; color:#253656; margin-top:10px}
-    /* Panels */
-    section{padding:56px 0}
-    .panel{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .section-title{font-size:28px; color:var(--ink); margin:0 0 14px}
-    .muted{color:var(--muted)}
-    /* ROI calculator */
-    .roi-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px}
-    .field{display:flex; flex-direction:column; gap:6px}
-    .field input{padding:12px 14px; border:1px solid var(--line); border-radius:12px; font-size:16px}
-    .stat{
-      background:var(--wash); border:1px dashed #dfe7ef; padding:18px; border-radius:14px; text-align:center; font-weight:800; color:#13243f
-    }
-    /* How it works */
-    .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-    .step{padding:18px; border:1px solid var(--line); border-radius:14px; background:#fff}
-    .step h4{margin:0 0 6px}
-    /* Differentiators */
-    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
-    .pill{display:inline-block; background:#eef6f2; color:#0a3a23; padding:6px 10px; border-radius:999px; font-weight:700; font-size:.9rem}
-    /* Pricing */
-    .pricing{display:grid; grid-template-columns:1fr; gap:18px}
-    .price{font-weight:900; font-size:38px; color:var(--ink)}
-    .setup{color:#9aa9bd; text-decoration:line-through; margin-left:10px; font-weight:700}
-    .free{background:var(--accent); color:#1b1207; padding:4px 10px; border-radius:999px; font-weight:900; margin-left:10px}
-    /* FAQ */
-    details{border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:#fff}
-    details+details{margin-top:10px}
-    summary{cursor:pointer; font-weight:800; color:#16253f}
-    /* Footer CTA */
-    .cta-banner{background:var(--bg); color:#fff; border-radius:var(--radius); padding:28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px}
-    .cta-banner h3{margin:0; font-size:26px}
-    /* Footer */
-    footer{padding:38px 0 60px; color:#6f8098}
+
+    .pricing { display:grid; grid-template-columns: 1fr; gap: 18px; }
+    .price-tag { font-size: 42px; font-weight: 900; letter-spacing: -.5px; }
+    .muted { color: var(--muted); }
+
+    .faq dt { font-weight: 700; margin-top: 12px; }
+    .faq dd { margin: 6px 0 14px; color: var(--muted); }
+
+    .footer { margin: 42px 0 24px; color: var(--muted); font-size: 14px; text-align:center; }
+
     /* Responsive */
-    @media (max-width:900px){
-      .hero-grid{grid-template-columns:1fr}
-      .hero-split{grid-template-columns:1fr}
-      .roi-grid{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 20px; }
+      .three { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Urgency banner -->
-  <div class="topbar">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-      <div>
-        <span class="badge">Founders Beta</span>
-        <span>We’re <strong>waiving the $299 setup fee</strong> for the first <strong>20 customers</strong>.</span>
+  <header class="container">
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-badge">LS</div>
+        <div>LeadSaver</div>
       </div>
-      <a href="#signup" class="btn btn-ghost">Claim your spot</a>
-    </div>
-  </div>
-
-  <header>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
-      <a class="brand" href="#">
-        <img alt="LeadSaver logo" src="/assets/logo_mark.svg">
-        <span>LeadSaver</span>
-      </a>
-      <nav>
-        <a href="#how">How it works</a>
-        <a href="#calc">ROI</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-    </div>
+      <button class="cta" onclick="openSignup()">Start Free Trial — Claim Waived Setup</button>
+    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-label="LeadSaver hero">
       <div>
-        <div class="eyebrow">Stop losing jobs to voicemail</div>
-        <h1>Missed Calls = Lost Jobs. <br>LeadSaver Books Them Back.</h1>
-        <p class="sub">When you can’t answer, LeadSaver instantly texts the caller so you can <strong>win the job before they try a competitor</strong>. No credit card for the trial. Cancel anytime.</p>
-        <div class="hero-cta">
-          <a href="#signup" class="btn btn-cta">Start Free Trial — Claim Waived Setup</a>
-          <a href="#how" class="btn btn-ghost">See how it works ↓</a>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:10px; margin-top:14px;">
-          <span class="pill">Powered by Twilio & Zapier</span>
-          <span class="muted">Fast • Reliable • Opt-out compliant</span>
+        <h1>Missed calls text back automatically—so you book the job, not your competitor.</h1>
+        <p>When you can’t answer, LeadSaver auto-texts the caller in seconds. No card for the trial. Cancel anytime. <strong>Powered by proven technologies.</strong></p>
+        <button class="cta" onclick="openSignup()">Start Free Trial — Claim Waived Setup</button>
+        <div class="proofbar">Works with your current phone setup • Opt-out ready (“Reply STOP to opt out”) • Set-and-forget in minutes</div>
+        <div class="strip">
+          <span>Founder’s beta — <strong>$299 setup fee waived</strong> for the first 20 customers</span>
         </div>
       </div>
+      <div>
+        <!-- Use your generated hero image here -->
+        <img src="/assets/hero-split.png" alt="Phone showing missed call on one side and immediate auto-text response on the other" loading="eager" width="900" height="650" />
+        <!-- Optional backup to test:
+        <img src="/assets/hero-vector.png" alt="Phone chat UI showing first message from a business after a missed call" loading="lazy" width="900" height="650" />
+        -->
+      </div>
+    </section>
 
-      <div class="hero-split">
-        <div class="phone-card">
-          <img src="img/hero_without.png" alt="Without LeadSaver: missed call">
-          <div class="caption">No answer → Customer calls competitor</div>
-        </div>
-        <div class="phone-card" style="background:#eef7ff">
-          <img src="img/hero_with.png" alt="With LeadSaver: auto text to book">
-          <div class="caption">LeadSaver auto-texts → Job booked with you</div>
+    <!-- HOW IT WORKS (3 steps) -->
+    <section class="three" aria-label="How it works">
+      <div class="card">
+        <h3>1) You miss a call</h3>
+        <p>Real life happens. You’re on a job, in a crawl space, with another customer, or it’s after hours.</p>
+      </div>
+      <div class="card">
+        <h3>2) LeadSaver auto-texts</h3>
+        <p>We instantly send a friendly message from a <strong>dedicated business number</strong> so the lead doesn’t move on.</p>
+      </div>
+      <div class="card">
+        <h3>3) They reply &amp; you book</h3>
+        <p>Keep the conversation going and get the job on the calendar. One saved job typically covers the month.</p>
+      </div>
+    </section>
+
+    <!-- TRUST / COMPLIANCE STRIP -->
+    <section class="panel" aria-label="Trust and compliance">
+      <p class="muted">
+        <strong>Compliance &amp; respect built-in:</strong> Every message includes opt-out instructions (“Reply STOP to opt out”). 
+        Quiet hours and frequency limits prevent over-messaging. Works with your current phone provider—no number change required.
+      </p>
+      <p class="muted" style="margin-top:8px;">
+        <strong>About the sending number:</strong> Texts are sent from a <em>dedicated business number</em> powered by proven technologies for reliability and deliverability. 
+        This keeps follow-ups professional and compliant without tying up your primary line.
+      </p>
+    </section>
+
+    <!-- BENEFIT / ROI -->
+    <section class="panel" aria-label="Why it matters">
+      <h2 style="margin:0 0 8px;">Never lose a ready-to-buy lead just because you couldn’t pick up.</h2>
+      <p class="muted" style="margin:0 0 12px;">Speed wins. Contacting leads fast dramatically increases qualification and booking rates (the “speed-to-lead” effect). Even one saved job can cover the monthly fee.</p>
+      <!-- Optional tiny calculator (no libraries) -->
+      <div class="card" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; background:transparent;">
+        <label>
+          <span class="muted">Average job value ($)</span>
+          <input id="jobValue" type="number" inputmode="decimal" value="350" min="0" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0d131b;color:#fff">
+        </label>
+        <label>
+          <span class="muted">Saved jobs per month</span>
+          <input id="jobsSaved" type="number" inputmode="numeric" value="1" min="0" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0d131b;color:#fff">
+        </label>
+        <div style="grid-column: 1 / -1; display:flex; align-items:center; justify-content: space-between;">
+          <div class="muted">Estimated recovered value: <strong id="recovered">$350</strong> &nbsp;•&nbsp; Net after subscription: <strong id="net">$103</strong></div>
+          <button class="cta" onclick="openSignup()">Start Free Trial</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ROI CALCULATOR -->
-  <section id="calc">
-    <div class="container panel" style="padding:24px;">
-      <h2 class="section-title">See your monthly revenue recovery</h2>
-      <p class="muted" style="margin-top:-6px">Even one saved job typically covers the monthly fee.</p>
+    <!-- WHO IT'S FOR -->
+    <section class="panel" aria-label="Who it's for">
+      <h2 style="margin:0 0 8px;">Who it’s for</h2>
+      <p class="muted" style="margin:0">Busy business owners and teams who can’t always answer the phone — trades, home services, clinics, studios, and more.</p>
+    </section>
 
-      <div class="roi-grid">
-        <div>
-          <div class="field">
-            <label>Missed calls per month</label>
-            <input type="number" id="missed" min="0" value="10" />
-          </div>
-          <div class="field">
-            <label>Average job value (in $)</label>
-            <input type="number" id="value" min="0" value="350" />
-          </div>
-          <div class="field">
-            <label>Percent of missed calls we convert</label>
-            <input type="number" id="rate" min="0" max="100" value="35" />
-          </div>
-          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn btn-cta" onclick="calcROI()">Calculate</button>
-            <span class="muted">Typical range: 25–45% depending on trade & response speed.</span>
-          </div>
-        </div>
-
-        <div>
-          <div class="stat">
-            <div style="font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:#4b607d; font-weight:900;">Projected Monthly Recovery</div>
-            <div id="recovery" style="font-size:46px; margin-top:6px;">$1,225</div>
-            <div style="margin-top:8px; color:#354765">Lose just <strong>1</strong> call → LeadSaver pays for itself.</div>
-          </div>
-          <p class="muted" style="margin-top:12px">
-            Data point: Businesses that respond within 5 minutes are <strong>21×</strong> more likely to qualify a lead.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="container">
-      <h2 class="section-title">How it works</h2>
-      <div class="steps">
-        <div class="step">
-          <h4>1) Customer calls</h4>
-          <p class="muted">If you miss it, the clock is ticking—most callers try the next company within minutes.</p>
-        </div>
-        <div class="step">
-          <h4>2) LeadSaver auto-texts</h4>
-          <p class="muted">We send a friendly, branded message in seconds: “Sorry we missed you—want to book now?”</p>
-        </div>
-        <div class="step">
-          <h4>3) You book the job</h4>
-          <p class="muted">Caller replies by text; you or your team confirm. You keep the customer—no extra phone tag.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIFFERENTIATORS / TRUST -->
-  <section>
-    <div class="container grid-2">
-      <div class="panel" style="padding:22px;">
-        <h3 class="section-title" style="margin-bottom:6px;">Why choose LeadSaver</h3>
-        <ul>
-          <li><strong>Done-for-you setup</strong> — we configure everything in ~15 minutes.</li>
-          <li><strong>Works with any phone system</strong> — iPhone, Android, VoIP, landline.</li>
-          <li><strong>Secure & compliant</strong> — opt-out supported; enterprise-grade deliverability.</li>
-          <li><strong>Powered by Twilio & Zapier</strong> — proven, reliable infrastructure.</li>
-          <li><strong>No credit card for trial</strong> — cancel anytime.</li>
-        </ul>
-      </div>
-      <div class="panel" style="padding:22px;">
-        <h3 class="section-title" style="margin-bottom:6px;">Who it’s perfect for</h3>
-        <p class="muted">Service trades where missed calls = missed revenue: plumbers, HVAC, electricians, roofers, landscapers, contractors, garages, and more.</p>
-        <p class="muted">Typical teams: solo owner-operators up to 10-person crews who can’t sit by the phone all day.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing">
-    <div class="container panel" style="padding:24px;">
-      <h2 class="section-title">Pricing</h2>
+    <!-- PRICING -->
+    <section class="panel" aria-label="Pricing">
       <div class="pricing">
-        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-          <div class="price">$247<span style="font-size:18px; color:#586981">/month</span></div>
-          <div class="setup">$299 setup</div>
-          <div class="free">Waived for first 20 customers</div>
-        </div>
-        <ul>
-          <li>Unlimited auto-texts to missed calls (fair use).</li>
-          <li>Customizable message templates & branding.</li>
-          <li>Done-for-you onboarding + number configuration.</li>
-          <li>Email + SMS support during business hours.</li>
-        </ul>
-        <div class="hero-cta">
-          <a href="#signup" class="btn btn-cta">Start Free Trial — Claim Waived Setup</a>
-          <span class="muted">One saved job typically covers your month.</span>
+        <div class="card" style="display:grid; gap:10px;">
+          <div class="muted">Simple monthly pricing</div>
+          <div class="price-tag">$247<span class="muted" style="font-size:18px;font-weight:600"> / month</span></div>
+          <div class="muted">No long contracts. Cancel anytime.</div>
+          <div class="muted"><strong>$299 setup — waived</strong> for the first 20 customers.</div>
+          <button class="cta" onclick="openSignup()">Start Free Trial — Claim Waived Setup</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SOCIAL PROOF PLACEHOLDER -->
-  <section>
-    <div class="container panel" style="padding:22px; text-align:center;">
-      <h3 class="section-title" style="margin-bottom:8px;">Trusted by businesses like yours</h3>
-      <p class="muted">Early customer stories coming soon — join the first 20 and be featured.</p>
-    </div>
-  </section>
+    <!-- FAQ -->
+    <section class="panel" aria-label="FAQ">
+      <h2 style="margin:0 0 8px;">FAQ</h2>
+      <dl class="faq">
+        <dt>Will texts come from my existing phone number?</dt>
+        <dd>No. Messages are sent from a <strong>dedicated business number</strong> powered by proven technologies. This improves reliability, deliverability, and compliance without tying up your main line.</dd>
 
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container">
-      <h2 class="section-title">FAQ</h2>
+        <dt>Does this work after hours and on weekends?</dt>
+        <dd>Yes. LeadSaver auto-texts whenever you can’t pick up, so you don’t lose the lead to the next company.</dd>
 
-      <details open>
-        <summary>Is this legal / will it spam my customers?</summary>
-        <p class="muted">LeadSaver supports industry-standard opt-out language and maintains respectful frequency limits. Our goal is to help real customers book quickly—not spam.</p>
-      </details>
+        <dt>Can I set quiet hours and limits?</dt>
+        <dd>Yes. Quiet hours and frequency limits are built-in to keep follow-ups respectful.</dd>
 
-      <details>
-        <summary>Do I need to change my phone provider or number?</summary>
-        <p class="muted">No. We layer on top of your existing setup. We’ll guide you through a lightweight configuration during onboarding.</p>
-      </details>
+        <dt>Do I need to change my phone provider?</dt>
+        <dd>No. LeadSaver works with your current setup. There’s nothing new to learn and no phone number change required.</dd>
 
-      <details>
-        <summary>Does it work with iPhone, Android, VoIP, or landlines?</summary>
-        <p class="muted">Yes. If you can receive calls, LeadSaver can auto-text missed calls with a simple configuration.</p>
-      </details>
+        <dt>What if I already use call tracking or a CRM?</dt>
+        <dd>Great. LeadSaver focuses on one job: salvaging missed calls fast. It complements, not replaces, your existing tools.</dd>
 
-      <details>
-        <summary>What if a customer replies to the text?</summary>
-        <p class="muted">Replies come straight back to your team so you can confirm details and book the job fast.</p>
-      </details>
+        <dt>Is opt-out included?</dt>
+        <dd>Yes. Every message includes “Reply STOP to opt out,” and we honor it automatically.</dd>
 
-      <details>
-        <summary>What happens after the free trial?</summary>
-        <p class="muted">If you love it, continue at $247/month. If not, cancel—no hard feelings.</p>
-      </details>
-    </div>
-  </section>
+        <dt>How long is the trial?</dt>
+        <dd>14 days. No credit card required to start. Cancel anytime.</dd>
+      </dl>
+    </section>
+  </main>
 
-  <!-- SIGNUP / FORM -->
-  <section id="signup">
-    <div class="container cta-banner">
-      <h3>Only 20 founder slots — setup fee waived. Don’t lose your next job to a competitor.</h3>
-      <a href="#form" class="btn btn-cta">Claim your spot</a>
-    </div>
-  </section>
-
-  <section id="form">
-    <div class="container panel" style="padding:24px;">
-      <h2 class="section-title">Start your free trial</h2>
-      <p class="muted" style="margin-top:-6px">No credit card. We’ll get your auto-texts live in minutes.</p>
-      <form action="https://formspree.io/f/xldpnorn" method="POST" style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
-        <input class="field" type="text" name="name" placeholder="Your name" required style="padding:12px 14px; border:1px solid var(--line); border-radius:12px;">
-        <input class="field" type="email" name="email" placeholder="Email" required style="padding:12px 14px; border:1px solid var(--line); border-radius:12px;">
-        <input class="field" type="tel" name="phone" placeholder="Business phone" required style="padding:12px 14px; border:1px solid var(--line); border-radius:12px;">
-        <input class="field" type="text" name="business" placeholder="Company / Trade" required style="padding:12px 14px; border:1px solid var(--line); border-radius:12px;">
-        <textarea name="notes" placeholder="Anything we should know?" rows="3" style="grid-column:1/-1; padding:12px 14px; border:1px solid var(--line); border-radius:12px;"></textarea>
-        <button class="btn btn-cta" type="submit" style="grid-column:1/-1; justify-self:start;">Start Free Trial — Claim Waived Setup</button>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-      <div>© <span id="y"></span> LeadSaver</div>
-      <div><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
+  <footer class="container footer">
+    <div>
+      © <span id="year"></span> LeadSaver • <a href="mailto:support@leadsaver.ca">support@leadsaver.ca</a>
+      • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a>
     </div>
   </footer>
 
-  <script>
-    // Footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
+  <!-- Lightweight modal signup using <dialog> (native, tiny JS) -->
+  <dialog id="signupDialog" style="border:none;border-radius:16px;padding:0;max-width:520px;width:92%;box-shadow:var(--shadow)">
+    <form method="POST" action="https://formspree.io/f/xldpnorn" style="background:#0d131b;color:#fff;padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <strong>Start your free trial</strong>
+        <button type="button" onclick="closeSignup()" aria-label="Close" style="background:transparent;border:0;color:#9fb0c3;font-size:22px;cursor:pointer">×</button>
+      </div>
+      <p class="muted" style="margin-top:0">Tell us where to send setup details. No credit card required.</p>
+      <div style="display:grid;gap:10px">
+        <input required name="name" placeholder="Your name" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b0f14;color:#fff">
+        <input required type="email" name="email" placeholder="Work email" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b0f14;color:#fff">
+        <input name="company" placeholder="Business name (optional)" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b0f14;color:#fff">
+        <button class="cta" type="submit">Send me setup details</button>
+        <div class="muted" style="font-size:12px;text-align:center">By submitting, you agree to our <a href="/terms.html">Terms</a> and <a href="/privacy.html">Privacy</a>.</div>
+      </div>
+    </form>
+  </dialog>
 
-    // ROI calculator
-    function calcROI(){
-      const missed = +document.getElementById('missed').value || 0;
-      const value  = +document.getElementById('value').value || 0;
-      const rate   = (+document.getElementById('rate').value || 0)/100;
-      const recovery = Math.max(0, Math.round(missed * value * rate));
-      document.getElementById('recovery').textContent = recovery.toLocaleString(undefined,{style:'currency', currency:'USD'});
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Modal controls
+    const dlg = document.getElementById('signupDialog');
+    function openSignup() { if ('showModal' in dlg) dlg.showModal(); else window.location.href = 'https://formspree.io/f/xldpnorn'; }
+    function closeSignup() { if ('close' in dlg) dlg.close(); }
+    window.openSignup = openSignup; window.closeSignup = closeSignup;
+
+    // Tiny ROI calc
+    const $v = document.getElementById('jobValue');
+    const $s = document.getElementById('jobsSaved');
+    const $r = document.getElementById('recovered');
+    const $n = document.getElementById('net');
+    function fmt(x){ return '$' + (Math.max(0, Number(x) || 0)).toFixed(0); }
+    function recalc(){
+      const val = Math.max(0, parseFloat($v.value) || 0);
+      const saved = Math.max(0, parseFloat($s.value) || 0);
+      const recovered = val * saved;
+      const net = recovered - 247;
+      $r.textContent = fmt(recovered);
+      $n.textContent = fmt(net);
     }
-    calcROI();
+    $v.addEventListener('input', recalc);
+    $s.addEventListener('input', recalc);
+    recalc();
   </script>
 </body>
 </html>
