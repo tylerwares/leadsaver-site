@@ -244,11 +244,12 @@
         <h1>LeadSaver</h1>
       </div>
       <nav class="nav-actions">
-        <button class="hamburger" aria-label="Toggle menu">☰</button>
-        <div class="nav-menu">
-          <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
+        <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">☰</button>
+        <div id="navMenu" class="nav-menu" role="menu">
+          <a role="menuitem" href="#how">How it works</a>
+          <a role="menuitem" href="#pricing">Pricing</a>
         </div>
+
         <a class="btn primary" href="#signupModal" data-open-modal>Start Free Trial</a>
       </nav>
     </div>
@@ -476,9 +477,61 @@
     }
     job && job.addEventListener('input', calc);
     saved && saved.addEventListener('input', calc);
-    document.querySelector('.hamburger').addEventListener('click', ()=>{
-      document.querySelector('.nav-menu').classList.toggle('open');
-    });
+    (function(){
+      const btn  = document.getElementById('hamburger');
+      const menu = document.getElementById('navMenu');
+    
+      function openMenu() {
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        // optional: focus first link for accessibility
+        const first = menu.querySelector('a');
+        first && first.focus({preventScroll:true});
+        // close when clicking outside
+        document.addEventListener('click', onDocClick, {capture:true});
+        document.addEventListener('keydown', onKeydown);
+      }
+    
+      function closeMenu() {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', onDocClick, {capture:true});
+        document.removeEventListener('keydown', onKeydown);
+      }
+    
+      function toggleMenu(e){
+        e.preventDefault();
+        const isOpen = menu.classList.contains('open');
+        isOpen ? closeMenu() : openMenu();
+      }
+    
+      function onDocClick(e){
+        // Close if click is outside the button+menu
+        if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+          closeMenu();
+        }
+      }
+    
+      function onKeydown(e){
+        if (e.key === 'Escape') closeMenu();
+      }
+    
+      // Close when a menu link is clicked
+      menu.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click', ()=> closeMenu());
+      });
+    
+      // Close if we resize to desktop (prevents stuck-open state)
+      let lastW = window.innerWidth;
+      window.addEventListener('resize', ()=>{
+        const now = window.innerWidth;
+        if (lastW <= 640 && now > 640) closeMenu();
+        lastW = now;
+      });
+    
+      btn.addEventListener('click', toggleMenu);
+    })();
+
 
     // Modal open/close with native <dialog> & graceful fallback
     const modal = document.getElementById('signupModal');
