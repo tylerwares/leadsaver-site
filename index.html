@@ -46,6 +46,22 @@
         font-size: 14px;
       }
     }
+    .nav-actions a.btn.link {
+      padding: 6px 12px;        /* add inner padding so the halo has room */
+      margin-right: 8px;        /* extra breathing space between links */
+      border-radius: 6px;       /* soften corners */
+      position: relative;       /* keeps halo aligned with padding */
+    }
+    
+    .nav-actions a.btn.link:last-of-type {
+      margin-right: 0;          /* don’t add extra space after the last link */
+    }
+    
+    .nav-actions a.btn.link:focus-visible {
+      outline: none;            /* remove default outline */
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25); /* soft halo */
+    }
+
     /* Desktop nav spacing & focus styles */
     .nav-actions {
       display: flex;
