@@ -46,7 +46,32 @@
         font-size: 14px;
       }
     }
+    /* Desktop nav spacing & focus styles */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;              /* more space between links */
+    }
     
+    .nav-actions a.btn.link {
+      padding: 6px 10px;      /* small pill padding so focus doesn’t hug text */
+      border-radius: 999px;
+      white-space: nowrap;    /* prevents odd wrapping between words */
+    }
+    
+    /* Replace outline with non-overlapping halo */
+    .nav-actions a.btn.link:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.18);
+    }
+    
+    /* Optional: subtle hover fill so the pill looks intentional */
+    @media (hover:hover){
+      .nav-actions a.btn.link:hover {
+        background: #eef2ff;  /* very light blue */
+      }
+    }
+
     /* Optional: hamburger menu for nav */
     .hamburger {
       display: none;
