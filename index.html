@@ -560,9 +560,9 @@
       const taken = 20 - spots;
       progressFill.style.width = `${(taken / 20) * 100}%`;
     }
-    //updateUrgency();
+    updateUrgency();
     setInterval(() => {
-      if (spots > 0) spots--;
+      if (spots > 12) spots--;
       updateUrgency();
     }, 60000);
 
