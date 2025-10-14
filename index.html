@@ -412,7 +412,7 @@
         <div class="price-card">
           <span class="badge">⚡ Founder’s beta</span>
           <span class="guarantee">30-day money-back guarantee</span>
-          <div class="price">$247<span style="font-size:16px;color:var(--muted)">/month</span></div>
+          <div class="price">$149<span style="font-size:16px;color:var(--muted)">/month</span></div>
           <p style="margin:0 0 8px"><strong>$299 setup — waived for the first 20 customers</strong></p>
           <ul class="ul">
             <li>Automatic text-back for missed calls</li>
@@ -547,7 +547,7 @@
       const s = parseFloat(saved.value || 0);
       if(!j || !s){ out.textContent = 'Monthly ROI: —'; out.className = 'result'; return; }
       const revenue = j * s;
-      const roi = revenue - 247;
+      const roi = revenue - 149;
       const sign = roi >= 0 ? '+' : '–';
       out.textContent = `Monthly ROI: ${sign}$${Math.abs(roi).toFixed(2)}`;
       out.className = `result ${roi >= 0 ? 'positive' : 'negative'}`;
